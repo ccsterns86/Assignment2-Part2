@@ -28,3 +28,14 @@ int changePoint(int cursorPos, int editLine) {
     editLine = editLine ^ cursorBin;
     return editLine;
 }
+
+int buttonReleased() {
+    volatile int *curState = (volatile int *) 0xffff1010;
+    int btnVal = *curState;
+    if (btnVal == 1) { //if button was pressed
+        while(btnVal == 1) { //wait until it is no longer pressed
+            btnVal = *curState;
+        }
+        return 1; //button has been released
+    } else { return 0; } //button isn't being pressed
+}
