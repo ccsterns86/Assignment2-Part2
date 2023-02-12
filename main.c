@@ -23,6 +23,8 @@ int main()
     char *buf;
     int editLine = 0b00000000000000000000000000000000;
     int displayedLine[1] = {editLine};
+    volatile int *joystickState = (volatile int *) 0xffff1110;
+    int joystickPos;
     
     printstr("Welcome to the simulation.\n"); 
     printstr("You are in editing mode. \nUse the joystick and button to \nedit the first line.\n");
@@ -31,28 +33,23 @@ int main()
     while(1) { //keep looping in edit mode until we exit
         displayedLine[0] = flashCursor(cursorPos, displayedLine);
         if (pollkbd() == 0) { //no keyboard input
+            joystickPos = *joystickState;
             if (buttonReleased()) { //check if the button is being pressed and has been released.
                 editLine = changePoint(cursorPos, editLine);
                 displayedLine[0] = editLine;
             }
-        } 
-        else {
-            *buf = (char)readchar();
-            if (*buf == 'a') {
-                cursorPos =  moveCursorLeft(cursorPos);
-                displayedLine[0] = editLine;
-            }
-            if (*buf == 'd') {
+            //check if the joystick is being moved
+            if (joystickPos > 8) { //moved to the right
                 cursorPos = moveCursorRight(cursorPos);
                 displayedLine[0] = editLine;
             }
-            // if (*buf == 'e') {
-            //     editLine = changePoint(cursorPos, editLine);
-            //     displayedLine[0] = editLine;
-            // }
-            if (*buf == 'x') {
-                break;
+            else if (joystickPos < 8) { //moved to the left
+                cursorPos =  moveCursorLeft(cursorPos);
+                displayedLine[0] = editLine;
             }
+        } 
+        else {
+            break;
         }
     }
     displayedLine[0] = editLine;

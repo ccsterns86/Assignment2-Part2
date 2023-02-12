@@ -7,5 +7,5 @@ int moveCursorRight(int cursorPos);
 
 int changePoint(int cursorPos, int editLine);
 
-//For the button and joystick
+//For the button
 int buttonReleased();
