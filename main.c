@@ -55,11 +55,32 @@ int main()
     displayedLine[0] = editLine;
     display_line(displayedLine);
     printstr("Simulating...");
-
-    for( i=0 ;; i=(i+1) % PICTURES_TOTAL)   // Looping through the pictures forever
-    {
-        //display_line(editLine);
-        showpic(pictures[i]);               // output next picture to the graphics display
-    }
     
+    int prevLine = displayedLine[0];
+    int currLine = 0;
+    int currentBit;
+    int picture[31];
+    picture[0] = prevLine;
+    // array to map value to 1 or 0
+    int valArr[8] = {0, 1, 1, 1, 0, 1, 1, 0};
+    int idx;
+
+    for (int j = 1; j < 32; j++) {
+        // loop through each bit in the row
+        for (int n = 30;n >= -1; n--) { 
+            // isolate three bits above 'n' and move to three least significant bits
+            if (n == -1) { idx = (prevLine << 1) & 6; } // edge case, right
+            else if (n == 30) { idx = (prevLine >> n) & 3; } // edge case, left
+            else { idx = (prevLine >> n) & 7; } 
+            
+            // properly place currentBit correctly in the new line
+            currentBit = valArr[idx]; 
+            currLine = currLine | (currentBit << (n+1)); 
+
+        }
+        prevLine = currLine;
+        picture[j] = currLine;
+        currLine = 0;
+        showpic(picture);
+    }    
 }
