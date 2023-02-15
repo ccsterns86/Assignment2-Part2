@@ -15,9 +15,9 @@ int main()
     volatile int *joystickState = (volatile int *) 0xffff1110;
     int joystickPos;
     
-    // printstr("Welcome to the simulation.\n"); 
-    // printstr("You are in editing mode. \nUse the joystick and button to \nedit the first line.\n");
-    // printstr("When done, press enter on the \nMMIO keyboard.\n");
+    printstr("Welcome to the simulation.\n"); 
+    printstr("You are in editing mode. \nUse the joystick and button to \nedit the first line.\n");
+    printstr("When done, press enter on the \nMMIO keyboard.\n");
 
     while(1) { //keep looping in edit mode until we exit
         displayedLine[0] = flashCursor(cursorPos, displayedLine);
@@ -67,6 +67,7 @@ int main()
             currLine = currLine | (currentBit << (n+1)); 
 
         }
+
         prevLine = currLine;
         picture[j] = currLine;
         currLine = 0;
