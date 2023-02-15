@@ -29,4 +29,4 @@ int readint();
 
 // Graphics display output
 void showpic(int picture[32]);
-void display_line(int line[1]);
+void display_line(int line[1], int graphicsLine);

@@ -19,11 +19,11 @@ EXECUTABLE = part2
 
 # list of all *object* files that must be produced and linked together into the executable.
 # for *each* object file in this list there must be a corresponding C (.c) or Assembly (.S or .s) source file
-OBJECT_FILES = crt0.o main.o lib.o showpic.o pictures.o display_line.o editDisplay.o
+OBJECT_FILES = crt0.o main.o lib.o showpic.o display_line.o editDisplay.o
 
 # list of all header files (.h) and, possibly, other data files *included* into the source code files
 # via .include or #include directives
-HEADER_FILES = lib.h pictures.h
+HEADER_FILES = lib.h
 
 # ------------------------------------
 

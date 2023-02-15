@@ -6,7 +6,7 @@ int flashCursor(int cursorPos, int editLine[1]) {
     int newEditLine[1];
     int cursorBin = 0b1 << cursorPos;
     newEditLine[0] = editLine[0] ^ cursorBin; //XOR the line to get a flashing cursor
-    display_line(newEditLine);
+    display_line(newEditLine, 0);
     return newEditLine[0];
 }
 
