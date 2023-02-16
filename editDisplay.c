@@ -1,3 +1,9 @@
+/*
+ Written by Cassandra Sterns
+ SN: 22209739
+ Team: 404 Name not Found
+*/
+
 #include "editDisplay.h"
 #include "lib.h"
 

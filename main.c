@@ -1,6 +1,7 @@
 /*
-
- */
+ Written by Cassandra Sterns and Ethan Doyle
+ Team: 404 Name not Found
+*/
 
 #include "lib.h"
 #include "editDisplay.h"

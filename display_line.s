@@ -1,4 +1,7 @@
 # This file helps in the editing mode. It prints only to the top line.
+# Written by Cassandra Sterns and Ethan Doyle
+# Team: 404 Name Not Found
+
     .text
     
     .globl display_line
