@@ -73,4 +73,5 @@ int main()
         currLine = 0;
         showpic(picture);
     }    
+    printstr("Done");
 }
